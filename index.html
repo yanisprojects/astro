@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AstroVisa - Future of Travel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Outfit for the modern space feel, Cairo for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              space: {
+                black: '#080B14', // Deep space black
+                navy: '#0A1628',  // Dark navy
+                light: '#1E293B',
+              },
+              cyan: {
+                DEFAULT: '#00BFFF',
+                bright: '#22D3EE',
+                dim: 'rgba(34, 211, 238, 0.1)',
+                glow: 'rgba(34, 211, 238, 0.5)',
+              },
+              primary: {
+                DEFAULT: '#22D3EE', // Cyan Bright
+              },
+              slate: {
+                850: '#151e2e',
+                900: '#0f172a',
+                950: '#020617',
+              }
+            },
+            fontFamily: {
+              sans: ['Outfit', 'sans-serif'],
+              arabic: ['Cairo', 'sans-serif'],
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+              'cosmic': 'linear-gradient(to bottom, #080B14, #0A1628)',
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'float-delayed': 'float 6s ease-in-out 3s infinite',
+              'pulse-glow': 'pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'twinkle': 'twinkle 4s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              'pulse-glow': {
+                '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(34, 211, 238, 0.2)' },
+                '50%': { opacity: '.8', boxShadow: '0 0 40px rgba(34, 211, 238, 0.4)' },
+              },
+              twinkle: {
+                '0%, 100%': { opacity: '0.2', transform: 'scale(0.8)' },
+                '50%': { opacity: '1', transform: 'scale(1.2)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Custom scrollbar - Space Theme */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #080B14; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1E293B; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #22D3EE; 
+      }
+      
+      body {
+        background-color: #080B14;
+        color: #F8FAFC;
+      }
+
+      /* Stars Background */
+      .stars-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle var(--duration, 4s) ease-in-out infinite;
+        opacity: var(--opacity, 0.5);
+      }
+    </style>
+
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-space-black text-slate-100 antialiased overflow-x-hidden selection:bg-cyan-bright/30 selection:text-white">
+    <!-- Starfield Background -->
+    <div class="stars-container" id="starfield">
+       <!-- Stars injected via JS or simple CSS pattern -->
+    </div>
+    <div id="root"></div>
+    <script>
+      // Simple script to generate random stars
+      const starContainer = document.getElementById('starfield');
+      for(let i=0; i<50; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+        star.style.setProperty('--opacity', `${Math.random() * 0.7 + 0.3}`);
+        starContainer.appendChild(star);
+      }
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
